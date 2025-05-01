@@ -2,6 +2,34 @@
 #Uses a dataframe, a model one, a model two, and a variable you want to use to compare the models
 #Returns a data frame with percentages
 
+#' @title Comparing Two Prediction Models
+#' @name compareData
+#'
+#' @description Compares Two fitted models with Root Mean Squared Error, Mean Absoulte Error, and R^2.
+#'
+#' @param df A data frame to use for prediction and comparison.
+#' @param model1 First Model.
+#' @param model2 Second Model.
+#' @param x Variable you want to compare the models predictions.
+#' @param metrics Metrics to compare.
+#'
+#' @return A data frame comparing metrics
+#'
+#' @examples
+#'
+#' # Example using iris dataset
+#' flowers <- iris
+#' split <- splitData(flowers, trainingRatio = 0.8, seed = NULL)
+#' trainingOne <- split$training
+#' testingOne <- split$testing
+#'
+#'model1 <- lm(Sepal.Length ~ Petal.Length + Petal.Width, data = trainingOne)
+#' model2 <- lm(Sepal.Length ~ Petal.Length + Petal.Width + Species, data = trainingOne)
+#'
+#' results <- compareData(testingOne, model1, model2, x = "Sepal.Length")
+#' results
+#' @export
+
 compareData <- function(df, model1, model2, x, metrics = c("rmse", "mae", "r2")){
   if (!is.data.frame(df)){
     stop("The data must be a dataframe")

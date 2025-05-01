@@ -1,7 +1,7 @@
 ---
-title: "Split-Data"
+title: "SplitData"
 author: "James Bressani"
-date: "April 13, 2025"
+date: "April 30, 2025"
 output: html_document
 ---
 ## Split Data Documentation
@@ -22,16 +22,16 @@ List containing `train` and `test` datasets
 
 ```{r}
 #How to use SplitData() function
-cars <- mtcars
-head(cars)
+flowers <- iris
+head(flowers)
 
-cars <- splitData(cars, trainingRatio = 0.8, seed = NULL)
+flowers <- splitData(flowers, trainingRatio = 0.8, seed = NULL)
 
 #Use variables to extract the new dataframes
-trainingOne <- cars$training
-testingOne <- cars$testing
+trainingOne <- flowers$training
+testingOne <- flowers$testing
 
-#
+#checking structure of the new data
 str(trainingOne)
 str(testingOne)
 ```
@@ -42,7 +42,7 @@ Compares performance of two pre-trained models on the same test data.
 
 ### Arguments:
 
-`df`: Test dataset for evaluation (data frame)
+`df`: Test dataset for evaluation (dataframe)
 `model1`: Model 1
 `model2`: Model 2
 `x`: Name of the target variable
@@ -50,13 +50,13 @@ Compares performance of two pre-trained models on the same test data.
 
 ### Returns:
 
-Data frame with performance metrics for both models
+Dataframe with performance metrics for both models
 
 ```{r}
-model1 <- lm(mpg ~ wt + hp, data = trainingOne)
-model2 <- lm(mpg ~ wt + hp + cyl, data = trainingOne)
+model1 <- lm(Sepal.Length ~ Petal.Length + Petal.Width, data = trainingOne)
+model2 <- lm(Sepal.Length ~ Petal.Length + Petal.Width + Species, data = trainingOne)
 
-results <- compareData(testingOne, model1, model2, x = "mpg")
+results <- compareData(testingOne, model1, model2, x = "Sepal.Length")
 results
 ```
 
@@ -64,8 +64,8 @@ results
 
 ### Arguments:
 
-`results``: Results from compareData() (data frame)
-`plot_type`: Type of visualization (string: "metrics", "residuals", or "actual_vs_predicted")
+`compareDataResults`: Results from compareData() (dataframe)
+`plot`: Type of visualization (metrics, residuals, or actualvspredicted)
 
 ### Returns:
 

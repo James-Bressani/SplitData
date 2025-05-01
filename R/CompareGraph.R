@@ -2,6 +2,32 @@
 #Makes graphs to compare the compareData results
 #Returns a ggplot2 graph
 
+#' @title Comparing Models with Visuals
+#' @name CompareGraph
+#' @description Makes graphs to compare the compareData results and returns a ggplot2 graph
+#'
+#' @param compareDataResults A data frame that resulted from compareData
+#' @param plot A string indicating the type of plot (metrics, residuals, actualvspredicted).
+#'
+#' @return Returns a ggplot2 comparison of two different models
+#'
+#' @examples
+#' flowers <- iris
+#' split <- splitData(flowers, trainingRatio = 0.8, seed = 123)
+#' trainingOne <- split$training
+#' testingOne <- split$testing
+#'
+#' model1 <- lm(Sepal.Length ~ Petal.Length + Petal.Width, data = trainingOne)
+#' model2 <- lm(Sepal.Length ~ Petal.Length + Petal.Width + Species, data = trainingOne)
+#'
+#' results <- compareData(testingOne, model1, model2, x = "Sepal.Length")
+#'
+#' # Create and display a metrics comparison plot
+#' comparison <- compareGraph(results, plot = "metrics")
+#' comparison
+#'
+#' @export
+#'
 compareGraph <- function(compareDataResults, plot = "metrics"){
   if(!is.data.frame(compareDataResults)){
     stop("The results must be from compareData")
@@ -58,7 +84,7 @@ compareGraph <- function(compareDataResults, plot = "metrics"){
     predictions <- attr(compareDataResults, "predictions")
 
     if(is.null(predictions)){
-      stop("No predictions found - did you use compareData()?")
+      stop("No predictions found, did you use compareData()?")
     }
 
     actual <- predictions$actual
