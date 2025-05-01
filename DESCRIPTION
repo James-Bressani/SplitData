@@ -1,0 +1,17 @@
+Package: SplitData
+Title: Splits Data For Model Training
+Version: 1.0
+Author: James Bressani
+Maintainer: <jamesbressani@usf.edu>
+Description: This package will help set up the split for someone who needs to train a model
+    SplitData will contain tools that provide an easy way to test multiple amount of training and testing splits.
+    Visualizations tools can then be used to determine if another training test split should be tried.
+Depends: R (>= 4.0.0)
+License: license CC0
+LazyData: true
+Encoding: UTF-8
+Imports:
+    dplyr,
+    ggplot2,
+    tidyr
+

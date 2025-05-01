@@ -1,0 +1,78 @@
+---
+title: "Split-Data"
+author: "James Bressani"
+date: "April 13, 2025"
+output: html_document
+---
+## Split Data Documentation
+
+## splitData()
+
+Splits a dataset into a training and testing set based off of a ratio given.
+
+### Arguments:
+
+- `df`: Dataset to split (dataframe)
+- `trainingRatio`: Proportion for training (default is 80%)
+- `seed`: For reproducible results (default is null)
+
+### Returns:
+
+List containing `train` and `test` datasets
+
+```{r}
+#How to use SplitData() function
+cars <- mtcars
+head(cars)
+
+cars <- splitData(cars, )
+
+#Use variables to extract the new dataframes
+trainingOne <- cars$training
+testingOne <- cars$testing
+
+#
+str(trainingOne)
+str(testingOne)
+```
+
+## compareData()
+
+Compares performance of two pre-trained models on the same test data.
+
+### Arguments:
+
+`test_data`: Test dataset for evaluation (data frame)
+`model1`: Model 1
+`model2`: Model 2
+`target`: Name of target variable
+`metrics`: Performance metrics to calculate
+
+### Returns:
+
+Data frame with performance metrics for both models
+
+```{r}
+# model1 <- lm(mpg ~ wt + hp, data = trainData)
+# model2 <- lm(mpg ~ wt + hp + cyl, data = trainData)
+# 
+# results <- compareData(testData, model1, model2, target = "mpg")
+# results
+```
+
+## compareGraph()
+
+### Arguments:
+
+`comparison_results`: Results from compareData() (data frame)
+`plot_type`: Type of visualization (string: "metrics", "residuals", or "actual_vs_predicted")
+
+### Returns:
+
+ggplot2 visualization comparing the models
+
+```{r}
+# graph1 <- compareGraph(results, plot_type = "metrics")
+# plot(graph1)
+
+```
