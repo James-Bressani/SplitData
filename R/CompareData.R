@@ -32,12 +32,12 @@ compareData <- function(df, model1, model2, x, metrics = c("rmse", "mae", "r2"))
   }
 
   if("r2" %in% metrics){
-    ssr <- sum((variable - mean(variable))^2)
-    ssr1 <- sum((variable - mean(variable))^2)
-    ssr2 <- sum((variable - mean(variable))^2)
+    sst <- sum((variable - mean(variable))^2)
+    ssr1 <- sum((variable - prediction1)^2)
+    ssr2 <- sum((variable - prediction2)^2)
 
-    r21 <- 1 - (ssr1/ssr)
-    r22 <- 1 - (ssr2/ssr)
+    r21 <- 1 - (ssr1/sst)
+    r22 <- 1 - (ssr2/sst)
     results$r2 <- c(r21, r22)
   }
 

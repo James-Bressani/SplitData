@@ -25,7 +25,7 @@ List containing `train` and `test` datasets
 cars <- mtcars
 head(cars)
 
-cars <- splitData(cars, )
+cars <- splitData(cars, trainingRatio = 0.8, seed = NULL)
 
 #Use variables to extract the new dataframes
 trainingOne <- cars$training
@@ -42,10 +42,10 @@ Compares performance of two pre-trained models on the same test data.
 
 ### Arguments:
 
-`test_data`: Test dataset for evaluation (data frame)
+`df`: Test dataset for evaluation (data frame)
 `model1`: Model 1
 `model2`: Model 2
-`target`: Name of target variable
+`x`: Name of the target variable
 `metrics`: Performance metrics to calculate
 
 ### Returns:
@@ -53,18 +53,18 @@ Compares performance of two pre-trained models on the same test data.
 Data frame with performance metrics for both models
 
 ```{r}
-# model1 <- lm(mpg ~ wt + hp, data = trainData)
-# model2 <- lm(mpg ~ wt + hp + cyl, data = trainData)
-# 
-# results <- compareData(testData, model1, model2, target = "mpg")
-# results
+model1 <- lm(mpg ~ wt + hp, data = trainingOne)
+model2 <- lm(mpg ~ wt + hp + cyl, data = trainingOne)
+
+results <- compareData(testingOne, model1, model2, x = "mpg")
+results
 ```
 
 ## compareGraph()
 
 ### Arguments:
 
-`comparison_results`: Results from compareData() (data frame)
+`results``: Results from compareData() (data frame)
 `plot_type`: Type of visualization (string: "metrics", "residuals", or "actual_vs_predicted")
 
 ### Returns:
@@ -72,7 +72,7 @@ Data frame with performance metrics for both models
 ggplot2 visualization comparing the models
 
 ```{r}
-# graph1 <- compareGraph(results, plot_type = "metrics")
-# plot(graph1)
+comparison <- compareGraph(results, plot = "metrics")
+comparison
 
 ```

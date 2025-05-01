@@ -15,7 +15,7 @@ compareGraph <- function(compareDataResults, plot = "metrics"){
   if(!requireNamespace("tidyr")){
     stop("tidyr is required")
   }
-
+#metric plot
   if(plot == "metrics"){
     plotData <- tidyr::pivot_longer(compareDataResults,
                                     cols = -model,
@@ -30,7 +30,7 @@ compareGraph <- function(compareDataResults, plot = "metrics"){
 
     return(metricsPlot)
   }
-
+#residual plot
   if(plot == "residuals"){
     residuals <- attr(compareDataResults, "residuals")
 
@@ -53,7 +53,7 @@ compareGraph <- function(compareDataResults, plot = "metrics"){
 
     return(residualsPlot)
   }
-
+#plot of the actual vs predicted
   if(plot == "actualVsPredicted"){
     predictions <- attr(compareDataResults, "predictions")
 
@@ -88,3 +88,4 @@ compareGraph <- function(compareDataResults, plot = "metrics"){
     return(actualVsPredPlot)
   }
 }
+

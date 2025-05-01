@@ -30,13 +30,3 @@ splitData <- function(df, trainingRatio = 0.8, seed = NULL){
 }
 
 
-cars <- mtcars
-head(cars)
-
-cars <- splitData(cars)
-
-trainingOne <- cars$training
-testingOne <- cars$testing
-
-str(trainingOne)
-str(testingOne)
